@@ -20,7 +20,7 @@ import com.example.springpractice.service.UserService;
 public class UserController {
 
     /**
-     * ユーザー情報 Service aaa
+     * ユーザー情報 Service bbb
      */
     @Autowired
     UserService userService;
