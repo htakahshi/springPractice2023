@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ユーザー情報一覧</title>
+    <link href="/css/list.css" rel="stylesheet"></link>
+    <link th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}" rel="stylesheet" ></link>
+    <meta charset="utf-8" />
+</head>
+<body>
+<div class="page-header">
+    <h1>ユーザー情報一覧</h1>
+</div>
+<div>
+    <a th:href="@{/user/add}">新規登録はこちら</a>
+</div>
+<table class="table">
+    <thead class="table-light">
+    <tr>
+        <th>ID</th>
+        <th>名前</th>
+        <th>パスワード</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${userlist}" th:object="${user}">
+        <td class="center">
+            <form method="POST" th:action="@{/user/detail}">
+                <input type="hidden" name="id" id="id" th:value="*{id}"/>
+                <button type="submit" name="submit" value="value" class="btn btn-link" th:text="*{id}"></button>
+            </form>
+        </td>
+        <td th:text="*{name}"></td>
+        <td th:text="*{password}"></td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<form th:action="@{/}" th:method="GET">
+    <div>
+        <input class="btn btn-primary" type="submit" value="戻る" style="width: 100px;" />
+    </div>
+    <br />
+</form>
+</body>
+</html>

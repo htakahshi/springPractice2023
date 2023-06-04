@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ユーザー情報詳細</title>
+    <link href="/css/list.css" rel="stylesheet"></link>
+    <link th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}" rel="stylesheet" ></link>
+    <script type="text/javascript" th:src="@{/js/common.js}"></script>
+    <meta charset="utf-8" />
+</head>
+<body>
+<div class="page-header">
+    <h1>ユーザー情報詳細</h1>
+</div>
+<div>
+    ※削除したい場合は、IDのリンクを押してください。
+</div>
+<table class="table">
+    <thead class="table-light">
+    <tr>
+        <th>ID</th>
+        <th>名前</th>
+        <th>パスワード</th>
+        <th>更新</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:object="${userdetail}">
+        <td class="center">
+            <form method="POST" th:action="@{/user/delete}" onSubmit="return butotnClick()">
+                <input type="hidden" name="id" id="id" th:value="*{id}"/>
+                <button type="submit" name="submit" value="value" class="btn btn-link" th:text="*{id}"></button>
+            </form>
+        </td>
+        <td>
+            <input type="text" name="name" id="name" th:value="*{name}"/>
+        </td>
+        <td>
+            <input type="text" name="password" id="password" th:value="*{password}"/>
+        </td>
+        <td>
+            <input class="btn btn-outline-primary" type="submit" value="更新" style="width: 100px;" />
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<form th:action="@{/user/list}" th:method="GET">
+    <div>
+        <input class="btn btn-primary" type="submit" value="戻る" style="width: 100px;" />
+    </div>
+    <br />
+</form>
+</body>
+</html>
