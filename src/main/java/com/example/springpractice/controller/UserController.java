@@ -14,7 +14,7 @@ import com.example.springpractice.entity.UserInfo;
 import com.example.springpractice.service.UserService;
 
 /**
- * ユーザー情報 Controller htakahashi
+ * ユーザー情報 Controller
  */
 @Controller
 public class UserController {
