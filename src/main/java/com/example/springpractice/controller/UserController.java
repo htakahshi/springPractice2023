@@ -14,7 +14,7 @@ import com.example.springpractice.entity.UserInfo;
 import com.example.springpractice.service.UserService;
 
 /**
- * ユーザー情報 Controller
+ * ユーザー情報 Controller 0616
  */
 @Controller
 public class UserController {
@@ -42,7 +42,7 @@ public class UserController {
     @RequestMapping(value = "/user/list", method = RequestMethod.GET)
     public String displayList(Model model) {
         List<UserInfo> userlist = userService.searchAll();
-        model.addAttribute("userlist", userlist);
+        model.addAttribute("uselist", userlist);
         return "user/list";
     }
 
