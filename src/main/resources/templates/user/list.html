@@ -20,10 +20,11 @@
         <th>ID</th>
         <th>名前</th>
         <th>パスワード</th>
+        <th>誕生日</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="user : ${userlist}" th:object="${user}">
+    <tr th:each="user : ${userList}" th:object="${user}">
         <td class="center">
             <form method="POST" th:action="@{/user/detail}">
                 <input type="hidden" name="id" id="id" th:value="*{id}"/>
@@ -32,6 +33,7 @@
         </td>
         <td th:text="*{name}"></td>
         <td th:text="*{password}"></td>
+        <td th:text="*{birthday}"></td>
     </tr>
     </tbody>
 </table>

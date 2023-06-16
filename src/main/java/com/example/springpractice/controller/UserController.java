@@ -1,5 +1,6 @@
 package com.example.springpractice.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import com.example.springpractice.entity.UserInfo;
 import com.example.springpractice.service.UserService;
 
 /**
- * ユーザー情報 Controller 0616
+ * ユーザー情報 Controller
  */
 @Controller
 public class UserController {
@@ -41,8 +42,8 @@ public class UserController {
      */
     @RequestMapping(value = "/user/list", method = RequestMethod.GET)
     public String displayList(Model model) {
-        List<UserInfo> userlist = userService.searchAll();
-        model.addAttribute("uselist", userlist);
+        List<UserInfo> userList = userService.searchAll();
+        model.addAttribute("userList", userList);
         return "user/list";
     }
 
