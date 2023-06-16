@@ -1,6 +1,7 @@
 package com.example.springpractice.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -37,4 +38,11 @@ public class UserInfo implements Serializable {
      */
     @Column(name = "password")
     private String password;
+
+    /**
+     * 誕生日
+     */
+    @Column(name = "birthday")
+    private Date birthday;
+
 }
