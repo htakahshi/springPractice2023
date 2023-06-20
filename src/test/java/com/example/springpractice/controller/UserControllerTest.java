@@ -41,7 +41,7 @@ public class UserControllerTest {
     private MockMvc mvc;
 
     /**
-     * ユーザー情報にアクセスした際に、正しいViewが返されるか検証する
+     * ユーザー情報にアクセスした際に、正しいViewが返されるか検証する 0620
      */
     @Test
     void startTest01() throws Exception {
