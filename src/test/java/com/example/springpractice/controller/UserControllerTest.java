@@ -1,8 +1,11 @@
 package com.example.springpractice.controller;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 
+import com.example.springpractice.entity.User;
 import com.example.springpractice.entity.UserInfo;
 import com.example.springpractice.repository.UserRepository;
 import com.example.springpractice.service.UserService;
@@ -22,6 +25,7 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,14 +38,12 @@ public class UserControllerTest {
     @InjectMocks
     private UserController userController;
     @Mock
-    private UserRepository userRepository;
-    @Mock
     private UserService userService;
     @Autowired
     private MockMvc mvc;
 
     /**
-     * ユーザー情報にアクセスした際に、正しいViewが返されるか検証する 0620
+     * ユーザー情報にアクセスした際に、正しいViewが返されるか検証する
      */
     @Test
     void startTest01() throws Exception {
@@ -68,19 +70,20 @@ public class UserControllerTest {
      * ユーザー情報一覧表示処理で正しいViewが返されるか検証する
      */
     @Test
-    void displayListTest02() throws Exception {
+    void getUserList() throws Exception {
 
-        UserInfo user = new UserInfo();
+        User user = new User();
         user.setName("htakahashi");
-        user.setPassword("Htaka1qazxsw2");
-        List<UserInfo> list = new ArrayList<UserInfo>();
+        List<User> list = new ArrayList<User>();
         list.add(user);
-        when(userRepository.findAll()).thenReturn(list);
 
-        mvc.perform(
-                MockMvcRequestBuilders.get("/user/list"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.model().attribute("userList", list));
+        when(userService.searchUserList()).thenReturn(list);
+
+        Method method = UserController.class.getDeclaredMethod("getUserList", String.class);
+        method.setAccessible(true);
+        List<User> actual = (List<User>) method.invoke(userController, "a");
+        assertThat("htakahashi", is(actual.get(0).getName()));
+
     }
 
     /**
