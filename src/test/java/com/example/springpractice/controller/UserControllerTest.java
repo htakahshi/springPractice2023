@@ -1,7 +1,14 @@
 package com.example.springpractice.controller;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 
+import com.example.springpractice.entity.User;
+import com.example.springpractice.entity.UserInfo;
+import com.example.springpractice.repository.UserRepository;
+import com.example.springpractice.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -16,12 +23,20 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @SpringBootTest
 @Transactional
 @AutoConfigureMockMvc
 public class UserControllerTest {
 
+    @InjectMocks
+    private UserController userController;
+    @Mock
+    private UserService userService;
     @Autowired
     private MockMvc mvc;
 
@@ -35,6 +50,26 @@ public class UserControllerTest {
                 MockMvcRequestBuilders.get("/user/list")).andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.view().name("user/list"));
+    }
+
+    /**
+     * ユーザー情報一覧表示処理で正しいViewが返されるか検証する
+     */
+    @Test
+    void getUserList() throws Exception {
+
+        User user = new User();
+        user.setName("htakahashi");
+        List<User> list = new ArrayList<User>();
+        list.add(user);
+
+        when(userService.searchUserList()).thenReturn(list);
+
+        Method method = UserController.class.getDeclaredMethod("getUserList", String.class);
+        method.setAccessible(true);
+        List<User> actual = (List<User>) method.invoke(userController, "a");
+        assertThat("htakahashi", is(actual.get(0).getName()));
+
     }
 
     /**
