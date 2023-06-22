@@ -39,7 +39,7 @@ import com.github.springtestdbunit.annotation.DbUnitConfiguration;
 public class UserServiceTest {
 
     /**
-     * ユーザー情報 Repository
+     * ユーザー情報 Repository Practice
      */
     @InjectMocks
     private UserService userService;
