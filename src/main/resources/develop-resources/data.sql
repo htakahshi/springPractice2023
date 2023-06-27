@@ -1,0 +1,1 @@
+INSERT INTO diary(comment, create_datetime) VALUES('今日は晴れ。コメント１', LOCALTIME()) ;

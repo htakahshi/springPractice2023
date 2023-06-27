@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @Entity
 @Data
-@Table(name = "user_list")
+@Table(name = "user")
 public class User implements Serializable {
 
     /**
