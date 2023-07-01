@@ -15,7 +15,7 @@ import java.util.Date;
 public class User implements Serializable {
 
     /**
-     * ID 0701
+     * ID 0701 4
      */
     @Id
     @Column(name = "id")
