@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.example.springpractice.entity.User;
+import com.example.springpractice.repository.UserListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

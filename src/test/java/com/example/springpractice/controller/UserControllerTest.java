@@ -10,6 +10,8 @@ import com.example.springpractice.entity.UserInfo;
 import com.example.springpractice.repository.UserRepository;
 import com.example.springpractice.service.UserService;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -128,4 +130,6 @@ public class UserControllerTest {
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("id", "1"));
     }
+
+
 }

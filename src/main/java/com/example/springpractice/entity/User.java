@@ -11,11 +11,11 @@ import java.util.Date;
  */
 @Entity
 @Data
-@Table(name = "user_list")
+@Table(name = "user")
 public class User implements Serializable {
 
     /**
-     * ID
+     * ID 0701 4 5 6 7
      */
     @Id
     @Column(name = "id")
@@ -23,7 +23,7 @@ public class User implements Serializable {
     private Long id;
 
     /**
-     * 名前 0701 2 3
+     * 名前 0701 2 3 9
      * 8
      */
     @Column(name = "name")
