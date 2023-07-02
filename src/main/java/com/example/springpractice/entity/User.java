@@ -23,8 +23,7 @@ public class User implements Serializable {
     private Long id;
 
     /**
-     * 名前 0701 2 3
-     * 8
+     * 名前
      */
     @Column(name = "name")
     private String name;
