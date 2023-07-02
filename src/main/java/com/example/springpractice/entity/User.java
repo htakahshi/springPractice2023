@@ -24,6 +24,7 @@ public class User implements Serializable {
 
     /**
      * 名前 0701 2 3
+     * 8
      */
     @Column(name = "name")
     private String name;
