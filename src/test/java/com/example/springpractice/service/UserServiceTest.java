@@ -6,6 +6,7 @@ import com.example.springpractice.entity.UserInfo;
 import com.example.springpractice.repository.UserRepository;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DbUnitConfiguration;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -15,6 +16,8 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.fail;
@@ -33,16 +36,19 @@ import static org.mockito.Mockito.doReturn;
 public class UserServiceTest {
 
     /**
-     * ユーザー情報 Repository Practice Practice
+     * ユーザー情報 Repository
      */
     @InjectMocks
     private UserService userService;
     @Mock UserRepository userRepository;
 
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+
     @Test
     void findByIdTest() {
-
-        MockitoAnnotations.openMocks(this);
 
         UserInfo user = new UserInfo();
         user.setId(1L);
@@ -62,5 +68,25 @@ public class UserServiceTest {
 //        method.setAccessible(true);
 //        List<User> actual = (List<User>) method.invoke(userService, "a");
 //        assertThat("htakahashi", is(actual.get(0).getName()));
+    }
+
+    @Test
+    void searchAllTest() {
+
+        List<UserInfo> userList = new ArrayList<>();
+        UserInfo user = new UserInfo();
+        user.setId(1L);
+        user.setName("htakahashi");
+        user.setPassword("password");
+        userList.add(user);
+
+        doReturn(userList).when(userRepository).findAll();
+
+        try {
+            List<UserInfo> result = userService.searchAll();
+            assertThat("htakahashi", is(result.get(0).getName()));
+        } catch (Exception e) {
+            fail("test失敗");
+        }
     }
 }
