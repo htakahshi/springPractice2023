@@ -1,10 +1,7 @@
 package com.example.springpractice.controller;
 
-import java.util.Date;
 import java.util.List;
 
-import com.example.springpractice.entity.User;
-import com.example.springpractice.repository.UserListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -111,15 +108,5 @@ public class UserController {
         List<UserInfo> userlist = userService.searchAll();
         model.addAttribute("userlist", userlist);
         return "user/list";
-    }
-
-    /**
-     * test用メソッド
-     * @param a string
-     * @return userList
-     */
-    private List getUserList(String a) {
-        List<User> userList = userService.searchUserList();
-        return userList;
     }
 }
